@@ -6,16 +6,27 @@ Confira a descrição completa do desafio aqui: https://github.com/SeniorSA/inov
 
 O frontend deste projeto poder ser obtido aqui: https://github.com/sb2901/desafio-fullstack-front
 
-## 💻 Pré-requisitos
-- JDK 17
-- Maven
+## Tecnologias Utilizadas
+Este projeto foi desenvolvido utilizando o ecossistema Spring (Boot, Data e Security), Java 17, Banco de Dados H2 e JWT.
 
-## 🚀 Instalação
-- Realize o clone do projeto em sua máquina
-- Abra o projeto na IDE Java de sua preferencia
-- Atualize as dependencias maven
+ ### Alternativas de uso (MySQl)
+ Os arquivos application.properties e pom.xml possuem comentados os trechos que permitem a utilização do sistema com MySQL. 
+ Basta descomentar e apontar para sua instalação MySql.
+
+
+## Instalação e execução
+Siga os passos abaixo para executar o projeto em sua máquina.
+
+ ### 💻 Pré-requisitos
+ - JDK 17
+ - Maven
+
+ ### 🚀 Instalação
+ - Realize o clone do projeto em sua máquina
+ - Abra o projeto na IDE Java de sua preferencia
+ - Atualize as dependencias maven
  
-## ☕ Execução
-- Execute a classe TestApplication
+ ### ☕ Execução
+ - Execute a classe TestApplication
 
-- 
+  
