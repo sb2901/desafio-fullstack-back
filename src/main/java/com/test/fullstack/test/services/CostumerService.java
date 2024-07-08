@@ -10,6 +10,7 @@ import com.test.fullstack.test.repositories.CostumerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -19,7 +20,7 @@ public class CostumerService {
     @Autowired
     private CostumerRepository userRepository;
 
-    @Autowired
+
     private CostumerContactRepository contactRepository;
 
     public List<CostumerDto> getAll(){
@@ -47,6 +48,7 @@ public class CostumerService {
          userRepository.deleteById(dto.id());
     }
 
+
     private void removeOldContacts(CostumerDto dto){
         Optional<Costumer>  opCostumer = userRepository.findById(dto.id());
         opCostumer.ifPresent(costumer ->
@@ -66,7 +68,7 @@ public class CostumerService {
 
         //Remove os contatos que não estão mais no dto
         removeOldContacts(dto);
-
+      
         Costumer costumer = Costumer.builder()
                 .id(dto.id())
                 .name(dto.name())
@@ -76,6 +78,7 @@ public class CostumerService {
     }
 
     private Set<CostumerContact> toContactList(Costumer costumer, List<CostumerContactDto> listDto){
+
        return listDto==null ? Set.of():
                listDto.stream()
                 .map(dto-> {
@@ -105,6 +108,7 @@ public class CostumerService {
                         cc.getType().getId(),
                         cc.getValue(),
                         costumer.getId())
+
                 ).collect(Collectors.toList()) ;
     }
 
