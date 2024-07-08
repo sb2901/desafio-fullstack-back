@@ -35,5 +35,6 @@ O desafio não foi finalizado e ficaram pendentes as seguintes implementações:
 - Implementação de validade do token (Atualmente nunca expira)
 - Implementação de um gerenciamento de exceções (@ControllerAdvice)
 - Validações básicas dos entities antes de inserir no DB
+- Cobertura de testes
 
   
