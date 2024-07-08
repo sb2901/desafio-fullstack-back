@@ -23,6 +23,7 @@ public class CostumerController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @Transactional
     @PutMapping
     public ResponseEntity<Void> update(@RequestBody CostumerDto costumerDto) {
         costumerService.update(costumerDto);
@@ -35,19 +36,16 @@ public class CostumerController {
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
-    //TODO
     @Transactional
     @GetMapping("/list")
     public List<CostumerDto> getAll() {
         return costumerService.getAll();
     }
 
-
     @Transactional
     @GetMapping("/{id}")
     public ResponseEntity<CostumerDto>  getById(@PathVariable( value = "id") Long id) {
         return ResponseEntity.ok().body(costumerService.get(id.intValue()));
     }
-
 
 }
