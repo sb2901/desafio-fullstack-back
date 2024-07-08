@@ -5,10 +5,10 @@ import com.test.fullstack.test.dto.CostumerDto;
 import com.test.fullstack.test.entities.Costumer;
 import com.test.fullstack.test.entities.CostumerContact;
 import com.test.fullstack.test.entities.enums.ContactType;
+import com.test.fullstack.test.repositories.CostumerContactRepository;
 import com.test.fullstack.test.repositories.CostumerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -18,6 +18,9 @@ public class CostumerService {
 
     @Autowired
     private CostumerRepository userRepository;
+
+    @Autowired
+    private CostumerContactRepository contactRepository;
 
     public List<CostumerDto> getAll(){
         Iterable<Costumer> itCostumer = userRepository.findAll();
@@ -44,7 +47,26 @@ public class CostumerService {
          userRepository.deleteById(dto.id());
     }
 
+    private void removeOldContacts(CostumerDto dto){
+        Optional<Costumer>  opCostumer = userRepository.findById(dto.id());
+        opCostumer.ifPresent(costumer ->
+                {
+                    if(costumer.getContacts()!=null && !costumer.getContacts().isEmpty()) {
+                        Set<Integer> collectBaseIds = dto.contact().stream().map(c -> c.id()).collect(Collectors.toSet());
+                        costumer.getContacts().forEach(contact ->{
+                            if( !collectBaseIds.contains(contact.getId())){
+                                contactRepository.delete(contact);
+                            }
+                        });
+                    }
+                }
+        );
+    }
     public void update(CostumerDto dto){
+
+        //Remove os contatos que não estão mais no dto
+        removeOldContacts(dto);
+
         Costumer costumer = Costumer.builder()
                 .id(dto.id())
                 .name(dto.name())
@@ -54,10 +76,11 @@ public class CostumerService {
     }
 
     private Set<CostumerContact> toContactList(Costumer costumer, List<CostumerContactDto> listDto){
-       return listDto==null ? null:
+       return listDto==null ? Set.of():
                listDto.stream()
                 .map(dto-> {
                     return CostumerContact.builder()
+                            .id(dto.id())
                             .value(dto.value())
                             .type(ContactType.valueOf(dto.type()))
                             .costumer(costumer)
@@ -81,7 +104,7 @@ public class CostumerService {
                         cc.getId(),
                         cc.getType().getId(),
                         cc.getValue(),
-              costumer.getId())
+                        costumer.getId())
                 ).collect(Collectors.toList()) ;
     }
 
