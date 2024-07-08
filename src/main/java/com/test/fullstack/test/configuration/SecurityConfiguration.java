@@ -20,6 +20,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.List;
 
+/**
+ * Fonte : https://medium.com/@felipeacelinoo/protegendo-sua-api-rest-com-spring-security-e-autenticando-usu%C3%A1rios-com-token-jwt-em-uma-aplica%C3%A7%C3%A3o-d70e5b0331f9
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
@@ -29,7 +32,8 @@ public class SecurityConfiguration {
 
     public static final String [] NO_AUTHENTICATION = {
             "/users/login", // Url que usaremos para fazer login
-            "/users/register" // Url que usaremos para criar um usuário
+            "/users/register", // Url que usaremos para criar um usuário
+            "h2-console" //Banco de dados
     };
 
     // Endpoints que requerem autenticação para serem acessados

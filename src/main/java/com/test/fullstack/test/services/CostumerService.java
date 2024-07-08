@@ -58,7 +58,6 @@ public class CostumerService {
                listDto.stream()
                 .map(dto-> {
                     return CostumerContact.builder()
-                           // .id(dto.id())
                             .value(dto.value())
                             .type(ContactType.valueOf(dto.type()))
                             .costumer(costumer)
