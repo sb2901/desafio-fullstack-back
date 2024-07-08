@@ -29,4 +29,11 @@ Siga os passos abaixo para executar o projeto em sua máquina.
  ### ☕ Execução
  - Execute a classe TestApplication
 
+## Próximos passos
+O desafio não foi finalizado e ficaram pendentes as seguintes implementações:
+- Implementação de um mapper (entity - dto)
+- Implementação de validade do token (Atualmente nunca expira)
+- Implementação de um gerenciamento de exceções (@ControllerAdvice)
+- Validações básicas dos entities antes de inserir no DB
+
   
