@@ -1,13 +1,20 @@
 package com.test.fullstack.test.dto;
 
-import com.test.fullstack.test.entities.Costumer;
-import com.test.fullstack.test.entities.enums.ContactType;
-import jakarta.persistence.*;
+import lombok.*;
 
-public record CostumerContactDto (
-       Integer id,
-       Integer type,
-        String value,
-       Integer idCostumer)
-{
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
+public class CostumerContactDto {
+    private Integer id;
+    private String value;
+    private Integer type;
+
+
 }
+
+
+
+
+

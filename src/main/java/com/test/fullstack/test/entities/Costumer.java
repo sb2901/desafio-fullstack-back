@@ -35,7 +35,8 @@ public class Costumer {
 
 
     @OneToMany(mappedBy="costumer", cascade=CascadeType.ALL)
-    private Set<CostumerContact> contacts;
+    private Set<CostumerContact> contact;
+
 }
 
 
