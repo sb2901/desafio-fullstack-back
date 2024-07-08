@@ -32,15 +32,8 @@ public class Costumer {
     @CreationTimestamp
     @Column(updatable = false, name = "dt_created")
     private Date createdAt;
-
-
+    
     @OneToMany(mappedBy="costumer", cascade=CascadeType.ALL)
     private Set<CostumerContact> contact;
 
 }
-
-
-
-
-
-
